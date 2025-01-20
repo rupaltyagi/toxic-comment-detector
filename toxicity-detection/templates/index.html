@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css" >
+    <title>Home</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/predict" method="post">
+            <h1 class="heading text">Toxic Speech Detection</h1>
+            <label class="text">Enter the text here: </label><br>
+            <textarea id="text-input" name="textarea" placeholder="Hello world...enter your text to detect toxicity"></textarea><br>
+            <button type="submit" id="btn">PREDICT</button>
+        </form>
+    </div>
+    <div id="result">{{result}}</div>
+    <script>
+        function predict() {
+            const text = document.getElementById('text-input').value;
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text })
+            });
+            
+            
+        }
+    </script>
+</body>
+</html>
